@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> conn[500001];
+vector<int> g[500001];
 int lift[500001][21], tin[500001], tout[500001], timer = 0, w;
 
 void dfs (int u, int p) {
 	tin[u] = ++timer;
 	lift[u][0] = p;
 	for (int i = 1; i <= w; i++) lift[u][i] = lift[lift[u][i-1]][i-1];
-	for (auto& v : conn[u]) if (v != p) dfs(v, u);
+	for (auto& v : g[u]) if (v != p) dfs(v, u);
 	tout[u] = ++timer;
 }
 
@@ -24,22 +24,18 @@ int lca (int u, int v) {
 }
 
 int main () {
-	ios::ios_base::sync_with_stdio(false);
-	cin.tie(0);
 	int n, q, u, v;
 	cin >> n >> q;
 	for (int i = 1; i < n; i++) {
 		cin >> v;
-		conn[i].push_back(v);
-		conn[v].push_back(i);
+		g[i].push_back(v);
+		g[v].push_back(i);
 	}
 	w = ceil(log2(n));
 	dfs(0, 0);
-
 	while (q--) {
 		cin >> u >> v;
 		cout << lca(u, v) << "\n";
 	}
-
 	return 0;
 }
