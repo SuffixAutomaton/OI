@@ -24,7 +24,6 @@ int main() {
 			}
 			u = ac[u].c[t[i]-'a'];
 		}
-		ac[u].cnt = m;
 		word.push_back(u);
 	}
 	queue<int> bfs;
