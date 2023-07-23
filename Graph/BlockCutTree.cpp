@@ -15,7 +15,7 @@ void dfs (int u, int p) {
 		else {
 			dfs(v, u);
 			low[u] = min(low[u], low[v]);
-			if (low[u] >= low[v]) {
+			if (low[u] == low[v]) {
 				ap[u] = p || tin[v] > 2;
 				grp.push_back({u});
 				while (grp.back().back() != v) {
