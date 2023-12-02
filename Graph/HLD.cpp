@@ -6,6 +6,7 @@ vector<int> g[100005];
 int n, sz[100005], t[100005], h[100005], d[100005], p[100005], k;
 
 void dfs (int u, int f) {
+	sz[u] = 1;
 	p[u] = f;
 	if ((int) g[u].size() > 1 && g[u][0] == f) swap(g[u][0], g[u][1]);
 	for (int i = 0; i < (int) g[u].size(); i++) if (g[u][i] != f) {
